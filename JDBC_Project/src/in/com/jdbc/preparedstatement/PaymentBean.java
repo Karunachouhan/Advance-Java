@@ -1,12 +1,12 @@
 package in.com.jdbc.preparedstatement;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class PaymentBean {
 
 	private int paymentId;
 	private double amount;
-	private Date date;
+	private Date PaymentDate;
 	private String paymentMethod;
 	private String transactionId;
 
@@ -26,12 +26,12 @@ public class PaymentBean {
 		this.amount = amount;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getPaymentDate() {
+		return PaymentDate;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setPaymentDate(Date paymentDate) {
+		PaymentDate = paymentDate;
 	}
 
 	public String getPaymentMethod() {
