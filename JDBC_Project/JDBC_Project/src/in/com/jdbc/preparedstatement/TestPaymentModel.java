@@ -1,6 +1,8 @@
 package in.com.jdbc.preparedstatement;
 
 import java.text.SimpleDateFormat;
+import java.util.Iterator;
+import java.util.List;
 
 public class TestPaymentModel {
 
@@ -10,7 +12,27 @@ public class TestPaymentModel {
 		// testUpdate();
 		// testdelete();
 		// testFindByPK();
-		testFindByTransactionId();
+		//testFindByTransactionId();
+		testSearch();
+	}
+
+	private static void testSearch() {
+		PaymentModel pm = new PaymentModel();
+		PaymentBean bean = new PaymentBean();
+		bean.setPaymentId(4);
+		List list = pm.search(bean, 1, 5);
+		//bean.setPaymentId(4);
+		Iterator t = list.iterator();
+		while (t.hasNext()) {
+			bean = (PaymentBean) t.next();
+			System.out.println(bean.getPaymentId());
+			System.out.println(bean.getAmount());
+			System.out.println(bean.getPaymentDate());
+			System.out.println(bean.getPaymentMethod());
+			System.out.println(bean.getTransactionId());
+			System.out.println("-----------------");
+		}
+		
 	}
 
 	private static void testFindByTransactionId() {
