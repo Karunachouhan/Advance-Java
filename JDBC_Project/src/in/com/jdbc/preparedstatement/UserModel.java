@@ -111,7 +111,6 @@ public class UserModel {
 
 		try {
 			conn = JDBCDataSource.getConnection();
-			conn.setAutoCommit(false);
 
 			PreparedStatement ps = conn.prepareStatement("select * from user where id = ?");
 			ps.setInt(1, id);
