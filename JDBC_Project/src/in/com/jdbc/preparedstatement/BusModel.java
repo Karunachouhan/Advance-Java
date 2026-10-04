@@ -151,4 +151,53 @@ public class BusModel {
 		}
 		return list;
 	}
+
+	public BusBean findByPk(int bus_id) {
+		Connection conn = null;
+		BusBean bean = null;
+		try {
+			conn = JDBCDataSource.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement("select * from bus where bus_id = ?");
+			pstmt.setInt(1, bus_id);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				bean = new BusBean();
+				bean.setBusId(rs.getInt("bus_id"));
+				bean.setBusNumber(rs.getString("bus_number"));
+				bean.setRoute(rs.getString("route"));
+				bean.setCapacity(rs.getInt("capacity"));
+				bean.setDepartureTime(rs.getTimestamp("departure_time"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCDataSource.closeConnection(conn);
+		}
+		return bean;
+	}
+
+	public BusBean findByUniqueColumn(String bus_number) {
+		Connection conn = null;
+		BusBean bean = null;
+
+		try {
+			conn = JDBCDataSource.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement("select * from bus where bus_number = ?");
+			pstmt.setString(1, bus_number);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				bean = new BusBean();
+				bean.setBusId(rs.getInt("bus_id"));
+				bean.setBusNumber(rs.getString("bus_number"));
+				bean.setRoute(rs.getString("route"));
+				bean.setCapacity(rs.getInt("capacity"));
+				bean.setDepartureTime(rs.getTimestamp("departure_time"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCDataSource.closeConnection(conn);
+		}
+		return bean;
+	}
 }

@@ -14,14 +14,44 @@ public class TestBusModel {
 		// testAdd();
 		// testUpdate();
 		// testDelete();
-		testSearch();
+		// testSearch();
+		// testFindByPk();
+		testFindByUniqueColumn();
+	}
 
+	private static void testFindByUniqueColumn() {
+		BusBean bean = new BusBean();
+		bean = model.findByUniqueColumn("BUS103");
+		if (bean != null) {
+			System.out.println(bean.getBusId());
+			System.out.println(bean.getBusNumber());
+			System.out.println(bean.getRoute());
+			System.out.println(bean.getCapacity());
+			System.out.println(bean.getDepartureTime());
+		} else {
+			System.out.println("Invalid bus number");
+		}
+
+	}
+
+	private static void testFindByPk() {
+		BusBean bean = new BusBean();
+		bean = model.findByPk(2);
+		if (bean != null) {
+			System.out.println(bean.getBusId());
+			System.out.println(bean.getBusNumber());
+			System.out.println(bean.getRoute());
+			System.out.println(bean.getCapacity());
+			System.out.println(bean.getDepartureTime());
+		} else {
+			System.out.println("Invalid Id");
+		}
 	}
 
 	private static void testSearch() {
 		BusBean bean = new BusBean();
-
-		List list = model.search(bean, 1, 4);
+		bean.setBusNumber("BUS102");
+		List list = model.search(bean, 0, 4);
 		Iterator it = list.iterator();
 		while (it.hasNext()) {
 			bean = (BusBean) it.next();
