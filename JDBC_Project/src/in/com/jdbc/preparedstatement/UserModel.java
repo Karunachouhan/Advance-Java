@@ -212,7 +212,6 @@ public class UserModel {
 			}
 			System.out.println("sql ======> " + sql.toString());
 			conn = JDBCDataSource.getConnection();
-			conn.setAutoCommit(false);
 
 			PreparedStatement ps = conn.prepareStatement(sql.toString());
 
